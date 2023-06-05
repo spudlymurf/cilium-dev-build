@@ -339,12 +339,8 @@ func (d *Daemon) allocateIPsLocked(ep *endpoint.Endpoint) error {
 	var err error
 
 	if option.Config.EnableIPv6 && ep.IPv6.IsValid() {
-<<<<<<< HEAD
-		_, err = d.ipam.AllocateIPWithoutSyncUpstream(ep.IPv6.AsSlice(), ep.HumanStringLocked()+" [restored]")
-=======
 		ipv6Pool := ipam.PoolOrDefault(ep.IPv6IPAMPool)
 		_, err = d.ipam.AllocateIPWithoutSyncUpstream(ep.IPv6.AsSlice(), ep.HumanString()+" [restored]", ipv6Pool)
->>>>>>> e20b16d708 (pkg/endpoint: make some more accessor methods lock-free)
 		if err != nil {
 			return fmt.Errorf("unable to reallocate %s IPv6 address: %w", ep.IPv6, err)
 		}
@@ -357,12 +353,8 @@ func (d *Daemon) allocateIPsLocked(ep *endpoint.Endpoint) error {
 	}
 
 	if option.Config.EnableIPv4 && ep.IPv4.IsValid() {
-<<<<<<< HEAD
-		_, err = d.ipam.AllocateIPWithoutSyncUpstream(ep.IPv4.AsSlice(), ep.HumanStringLocked()+"[restored]")
-=======
 		ipv4Pool := ipam.PoolOrDefault(ep.IPv4IPAMPool)
 		_, err = d.ipam.AllocateIPWithoutSyncUpstream(ep.IPv4.AsSlice(), ep.HumanString()+" [restored]", ipv4Pool)
->>>>>>> e20b16d708 (pkg/endpoint: make some more accessor methods lock-free)
 		switch {
 		// We only check for BypassIPAllocUponRestore for IPv4 because we
 		// assume that this flag is only turned on for IPv4-only IPAM modes
