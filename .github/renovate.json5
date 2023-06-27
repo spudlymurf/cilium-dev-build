@@ -45,6 +45,7 @@
   "pruneStaleBranches": true,
   "baseBranches": [
     "main",
+    "v1.14",
     "v1.13",
     "v1.12",
     "v1.11"
@@ -113,6 +114,7 @@
         "go.sum"
       ],
       matchBaseBranches: [
+        "v1.14",
         "v1.13",
         "v1.12",
         "v1.11"
@@ -191,6 +193,7 @@
       "allowedVersions": "22.04",
       "matchBaseBranches": [
         "main",
+        "v1.14",
         "v1.13"
       ]
     },
@@ -310,6 +313,7 @@
         "golangci/golangci-lint"
       ],
       "matchBaseBranches": [
+        "v1.14",
         "v1.13",
         "v1.12",
         "v1.11"
