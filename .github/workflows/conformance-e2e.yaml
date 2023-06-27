@@ -362,8 +362,8 @@ jobs:
             --helm-set=bpf.monitorAggregation=none \
             --helm-set=authentication.mutual.spire.enabled=true \
             --helm-set=authentication.mutual.spire.install.enabled=true \
-            --nodes-without-cilium=kind-worker3 \
             --helm-set-string=kubeProxyReplacement=${{ matrix.kpr }}"
+            #--nodes-without-cilium=kind-worker3 \
 
           TUNNEL="--helm-set-string=tunnelProtocol=${{ matrix.tunnel }}"
           if [ "${{ matrix.tunnel }}" == "disabled" ]; then
@@ -473,7 +473,7 @@ jobs:
             cd /host/
             ./contrib/scripts/kind.sh --xdp "" 3 "" "" "${{ matrix.kube-proxy }}" "dual"
 
-            kubectl patch node kind-worker3 --type=json -p='[{"op":"add","path":"/metadata/labels/cilium.io~1no-schedule","value":"true"}]'
+            #kubectl patch node kind-worker3 --type=json -p='[{"op":"add","path":"/metadata/labels/cilium.io~1no-schedule","value":"true"}]'
             if [ "${{ matrix.encryption }}" == "ipsec" ]; then
               kubectl create -n kube-system secret generic cilium-ipsec-keys \
                 --from-literal=keys="3 rfc4106(gcm(aes)) $(echo $(dd if=/dev/urandom count=20 bs=1 2> /dev/null | xxd -p -c 64)) 128"
