@@ -6,6 +6,7 @@ package logger
 import (
 	"net"
 
+	"github.com/cilium/cilium/pkg/identity"
 	"github.com/cilium/cilium/pkg/fqdn/restore"
 	"github.com/cilium/cilium/pkg/proxy/accesslog"
 )
